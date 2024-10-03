@@ -1,13 +1,26 @@
 .button {
   padding: 10px;
   visibility: hidden;
+
+  z-index: 2;
+  height: 20px;
+}
+.inTape {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: var(--main--bg);
 }
 .isVisible {
   visibility: visible;
 }
-
+.button svg {
+  background: transparent;
+}
 .button svg path {
   transition: all 0.3s ease-in;
+  stroke: var(--color);
 }
 .button:not(.disabled):hover svg path {
   stroke: var(--accent);
@@ -16,4 +29,10 @@
 .disabled {
   opacity: 0.2;
   cursor: auto;
+}
+.bottom {
+  bottom: 0;
+}
+.top {
+  top: 0;
 }
