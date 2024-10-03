@@ -1,0 +1,12 @@
+.tapeShot {
+  margin: 10px 0;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.tapeShot:not(.currentShot) > img,
+.currentShot {
+  border-radius: 4px;
+}
+.currentShot {
+  border: 2px solid var(--accent);
+}
