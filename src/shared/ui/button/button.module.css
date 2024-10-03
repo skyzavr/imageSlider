@@ -1,0 +1,19 @@
+.button {
+  padding: 10px;
+  visibility: hidden;
+}
+.isVisible {
+  visibility: visible;
+}
+
+.button svg path {
+  transition: all 0.3s ease-in;
+}
+.button:not(.disabled):hover svg path {
+  stroke: var(--accent);
+  cursor: pointer;
+}
+.disabled {
+  opacity: 0.2;
+  cursor: auto;
+}
