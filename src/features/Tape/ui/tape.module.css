@@ -1,0 +1,8 @@
+.tape {
+  margin: 0 20px;
+  overflow: hidden;
+}
+.tape > div {
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
