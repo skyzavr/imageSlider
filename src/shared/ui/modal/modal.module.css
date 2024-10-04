@@ -8,7 +8,6 @@
   color: var(--color);
   display: flex;
   flex-direction: column;
-  padding: 40px 60px;
 }
 .container {
   width: 100%;
@@ -24,4 +23,9 @@
 }
 .content {
   padding: 10px 20px;
+}
+@media (min-width: 1080px) {
+  .wrapper {
+    padding: 40px 60px;
+  }
 }
