@@ -1,4 +1,4 @@
-export const tapeImgNum = 6;
+// export const tapeImgNum = 11;
 const border = 2;
 const tapeShotHeight = 50;
 const tapeShotMargin = 10;
@@ -8,7 +8,8 @@ export const widthTapeFrame = tapeShotHeight + border * 2;
 export const tapeShotSize = widthTapeFrame + tapeShotMargin;
 
 //calc visible height of tape wrapper
-export const tapeWrapperSize = tapeImgNum * tapeShotSize + tapeShotMargin;
+export const tapeWrapperSize = (tapeImgNum = 6) =>
+  tapeImgNum * tapeShotSize + tapeShotMargin;
 
-export const calcMaxTapePos = (galleryLength: number) =>
+export const calcMaxTapePos = (galleryLength: number, tapeImgNum: number) =>
   (galleryLength - tapeImgNum) * tapeShotSize;

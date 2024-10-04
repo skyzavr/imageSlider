@@ -11,14 +11,15 @@ import classes from './tape.module.css';
 type tapeProps = {
   tapePosition: number;
   setTapePosition: numberState;
+  tapeImgNum: number;
 };
 
 export const Tape = (props: tapeProps) => {
-  const { tapePosition, setTapePosition } = props;
+  const { tapePosition, setTapePosition, tapeImgNum } = props;
   const currentTapePos = tapePosition * tapeShotSize;
 
   const tapeWrapperStyle = {
-    height: `${tapeWrapperSize}px`,
+    height: `${tapeWrapperSize(tapeImgNum)}px`,
     top: `${currentTapePos}px`,
   };
 
@@ -29,7 +30,12 @@ export const Tape = (props: tapeProps) => {
     const isForbBottom = deltaY > 0;
     const direction = isForbBottom ? -1 : 1;
 
-    const outOfBorder = isInTapeBorder(isForbTop, isForbBottom, tapePosition);
+    const outOfBorder = isInTapeBorder(
+      isForbTop,
+      isForbBottom,
+      tapePosition,
+      tapeImgNum
+    );
     if (outOfBorder) return;
     setTapePosition((prev) => prev + direction);
   };

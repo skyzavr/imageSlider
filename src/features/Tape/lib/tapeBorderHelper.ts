@@ -10,13 +10,14 @@ export type tapeBorders = (
 export type isInTapeBorderProps = (
   isTop: boolean,
   isBottom: boolean,
-  tapePosition: number
+  tapePosition: number,
+  tapeImgNum: number
 ) => boolean;
 
 export const isInTapeBorder: isInTapeBorderProps = (...params) => {
-  const maxTapePos = calcMaxTapePos(data.length);
+  const [isTop, isBottom, tapePosition, tapeImgNum] = params;
 
-  const [isTop, isBottom, tapePosition] = params;
+  const maxTapePos = calcMaxTapePos(data.length, tapeImgNum);
   const currentTapePos = Math.abs(tapePosition * tapeShotSize);
 
   const isTouchTop = tapePosition >= 0 && isTop;
