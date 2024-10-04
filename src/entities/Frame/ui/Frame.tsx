@@ -1,15 +1,15 @@
-import { Ref } from 'react';
+import { MouseEventHandler } from 'react';
 
 import classes from './frame.module.css';
 
 type props = {
   path: string;
-  imgRef: Ref<HTMLDivElement>;
+  toggleModal?: MouseEventHandler;
 };
 
-export const Frame = ({ path, imgRef }: props) => {
+export const Frame = ({ path, toggleModal }: props) => {
   return (
-    <article className={classes.frame} ref={imgRef}>
+    <article className={classes.frame} onClick={toggleModal}>
       <img src={path} />
     </article>
   );
