@@ -1,0 +1,7 @@
+.tapeWrapper {
+  display: flex;
+  flex-direction: row;
+}
+.tapeWrapper > div {
+  margin: 10px 5px;
+}
