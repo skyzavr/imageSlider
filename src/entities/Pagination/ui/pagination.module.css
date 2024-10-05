@@ -1,0 +1,33 @@
+.wrapper {
+  width: 60px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paginationList {
+  margin: 10px 0 10px 65px;
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.paginationDot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background-color: var(--gray);
+  margin-right: 5px;
+  transition: 0.2s ease-in-out all;
+}
+.paginationDot:last-child {
+  margin-right: 0;
+}
+.current {
+  background-color: var(--accent);
+  transition: 0.2s ease-in-out all;
+}
