@@ -15,12 +15,12 @@ export const DesktopGallery = () => {
     path: fullImgPath(Number(shot + 1)),
     toggleModal,
   };
-
+  const tapeImgNum = 6;
   return (
     <div className={classes.wrapper}>
-      <TapeWrapper tapeImgNum={6} />
+      <TapeWrapper {...{ tapeImgNum }} />
       <Frame {...frameProps} />
-      <Viewer {...{ isShow, toggleModal }} />
+      <Viewer {...{ isShow, toggleModal, tapeImgNum }} />
     </div>
   );
 };
