@@ -12,7 +12,6 @@ import classes from './viewer.module.css';
 
 export const Viewer = ({ isShow, toggleModal }: modalProps) => {
   const { shot, setShot } = useShotContext();
-
   const isPrevNotAllowed = shot === firstPosition;
   const isNextNotAllowed = shot + 1 === galleryLength;
 
@@ -32,7 +31,7 @@ export const Viewer = ({ isShow, toggleModal }: modalProps) => {
     <Modal {...{ isShow, toggleModal }}>
       <div className={classes.container}>
         <div>
-          <TapeWrapper tapeImgNum={11} />
+          <TapeWrapper tapeImgNum={6} />
         </div>
         <div className={classes.frameWrapper}>
           <Button
