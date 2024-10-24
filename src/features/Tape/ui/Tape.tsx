@@ -1,7 +1,7 @@
-import { WheelEvent } from 'react';
+import { useEffect, useState, WheelEvent } from 'react';
 
-import { SmallFrame } from '@entities/smallFrames';
-import { data } from '@shared/lib/mock';
+import { useShotContext } from '@app/api/context/shot/ShotContext';
+import { TapeContent } from '@entities/TapeContent';
 import { numberState } from '@shared/lib/dispatchTypes';
 import { isInTapeBorder } from '../lib/tapeBorderHelper';
 import { tapeWrapperSize, tapeShotSize } from '../lib/constant';
@@ -15,13 +15,23 @@ type tapeProps = {
 };
 
 export const Tape = (props: tapeProps) => {
+  const { shot } = useShotContext();
   const { tapePosition, setTapePosition, tapeImgNum } = props;
-  const currentTapePos = tapePosition * tapeShotSize;
-
+  const [pos, setPos] = useState(`${tapePosition * tapeShotSize}px`);
   const tapeWrapperStyle = {
     height: `${tapeWrapperSize(tapeImgNum)}px`,
-    top: `${currentTapePos}px`,
+    top: pos,
   };
+
+  useEffect(() => {
+    const position = shot >= tapeImgNum ? tapeImgNum - shot - 1 : 0;
+    setTapePosition(position);
+    setPos(`${position * tapeShotSize}px`);
+  }, [shot]);
+
+  useEffect(() => {
+    setPos(`${tapePosition * tapeShotSize}px`);
+  }, [tapePosition]);
 
   const onWheelHandler = (e: WheelEvent) => {
     const deltaY = Number(e.deltaY);
@@ -38,14 +48,11 @@ export const Tape = (props: tapeProps) => {
     );
     if (outOfBorder) return;
     setTapePosition((prev) => prev + direction);
+    setPos(`${(tapePosition + direction) * tapeShotSize}px`);
   };
   return (
     <div className={classes.tape} onWheel={onWheelHandler}>
-      <div style={tapeWrapperStyle}>
-        {data.map((el, i) => (
-          <SmallFrame {...{ i, el }} key={el} />
-        ))}
-      </div>
+      <TapeContent {...{ tapeWrapperStyle }} />
     </div>
   );
 };
