@@ -5,17 +5,18 @@ import { isInTapeBorder } from '@features/Tape/lib/tapeBorderHelper';
 import { tapeShotSize, calcMaxTapePos } from '@features/Tape/lib/constant';
 import { Button } from '@shared/ui/button/Button';
 import { galleryLength } from '@shared/lib/mock';
+import { tapeImgNumber } from '@shared/lib/constant';
 
 import classes from './tapeWrapper.module.css';
 
-export const TapeWrapper = ({ tapeImgNum }: { tapeImgNum: number }) => {
+export const TapeWrapper = ({ tapeImgNum }: { tapeImgNum?: number }) => {
   const [tapePosition, setTapePosition] = useState<number>(0);
-
+  const tapeNumberCorrect = tapeImgNum || tapeImgNumber;
   const currentTapePos = Math.abs(tapePosition * tapeShotSize);
-  const maxTapePos = calcMaxTapePos(galleryLength, tapeImgNum);
+  const maxTapePos = calcMaxTapePos(galleryLength, tapeNumberCorrect);
   const isShowTopBtn = tapePosition < 0;
   const isShowBottomBtn =
-    galleryLength > tapeImgNum && currentTapePos !== maxTapePos;
+    galleryLength > tapeNumberCorrect && currentTapePos !== maxTapePos;
 
   const changeTapePosition = (direction: number) => {
     const isTopBtn = direction === 1;
@@ -23,10 +24,9 @@ export const TapeWrapper = ({ tapeImgNum }: { tapeImgNum: number }) => {
       isTopBtn,
       !isTopBtn,
       tapePosition,
-      tapeImgNum
+      tapeNumberCorrect
     );
     if (outOfBorder) return;
-
     setTapePosition((prev) => prev + direction);
   };
 
@@ -38,7 +38,13 @@ export const TapeWrapper = ({ tapeImgNum }: { tapeImgNum: number }) => {
         onClickHandler={() => changeTapePosition(1)}
         isInTape={true}
       />
-      <Tape {...{ tapePosition, setTapePosition, tapeImgNum }} />
+      <Tape
+        {...{
+          tapePosition,
+          setTapePosition,
+          tapeImgNum: tapeNumberCorrect,
+        }}
+      />
       <Button
         isVisible={isShowBottomBtn}
         btnIcon="bottom"
