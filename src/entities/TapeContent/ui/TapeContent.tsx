@@ -8,11 +8,11 @@ type tapeWrapperStyle = { [key: string]: string };
 type props = {
   tapeWrapperStyle: tapeWrapperStyle;
   isStyles?: boolean;
-  transform: number;
 };
 
 export const TapeContent = (props: props) => {
-  const { tapeWrapperStyle, isStyles = false, transform } = props;
+  const { tapeWrapperStyle, isStyles = false } = props;
+
   const WrapperStyles = isStyles ? classes.tapeWrapper : '';
 
   return (
